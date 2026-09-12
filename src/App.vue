@@ -1,20 +1,21 @@
 <script setup>
-import { ref } from 'vue';
-
-// 点击按钮修改响应式数据，用于验证 Vue 页面交互。
-const count = ref(0);
+import EarthScene from './components/EarthScene.vue';
+import ProfilePanel from './components/ProfilePanel.vue';
 </script>
 
 <template>
-  <main>
-    <p class="eyebrow">GIS · 学习与探索</p>
-    <h1>我的个人主页</h1>
-    <p class="intro">从地图出发，记录学习，探索世界。</p>
-    <section aria-labelledby="practice-title">
-      <h2 id="practice-title">第一个交互</h2>
-      <p>点击按钮，体验数据变化如何更新页面。</p>
-      <button @click="count++">点击计数：{{ count }}</button>
-      <p class="note" aria-live="polite">已点击 {{ count }} 次</p>
-    </section>
-  </main>
+  <div class="homepage">
+    <header class="site-header">
+      <a class="brand" href="#main"><span class="brand-symbol" aria-hidden="true">◎</span> 我的个人主页</a>
+      <span class="header-caption">地理信息 · 学习与探索</span>
+    </header>
+    <main id="main" class="main-layout">
+      <EarthScene />
+      <ProfilePanel />
+    </main>
+    <footer class="site-footer">
+      <span>个人学习与作品记录</span>
+      <span>以地理视角，理解世界</span>
+    </footer>
+  </div>
 </template>

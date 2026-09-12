@@ -31,3 +31,13 @@ npm run preview
 - vite.config.js：开发构建配置。
 
 尚未实现三维地球，也尚未部署。
+
+## 第二阶段：电脑端布局
+
+- App.vue 组合页头、地球区域、个人资料和页脚。
+- src/components/EarthScene.vue 预留 Three.js 容器，目前没有地球或拖拽功能。
+- src/components/ProfilePanel.vue 包含个人信息和可切换的关于我、我的作品面板。修改 profile 对象可替换姓名和介绍。
+- src/style.css 使用 CSS Grid 构建左右两栏，仅考虑电脑端，最小布局宽度为 1000px。
+- 已通过生产构建，并在浏览器 1440 × 900 视口检查布局和页签切换。
+
+开发服务器已运行时直接访问 http://127.0.0.1:5173/，不需要再次运行 npm run dev。
