@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 // 修改这里的内容即可替换个人资料，不需要改动页面布局。
 const profile = {
-  name: '你的姓名',
+  name: '崔佳昊',
   description: '我正在学习 WebGIS，希望把空间分析知识与编程结合，让地图成为可以交互的作品。',
   interests: ['GIS 空间分析', 'WebGIS 学习', '交互地图']
 };
