@@ -77,3 +77,15 @@ h1 { margin: 0; font-weight: 650; font-size: clamp(46px, 4.2vw, 76px); line-heig
 .earth-canvas { inset: -100px -32px -70px; }
 .stage-footer { margin-top: auto; text-shadow: 0 1px 6px #060c13; }
 .stage-heading { text-shadow: 0 1px 6px #060c13; }
+/* 博客：padding 为内部留白，margin 为元素之间的间距。 */
+.blog-panel { padding-top: 24px; }
+.blog-home-link { display: inline-flex; align-items: center; gap: 20px; padding: 10px 16px; border: 1px solid #83d3ff50; border-radius: 5px; background: #0c2231; color: #cbeeff; font-size: 14px; }
+.blog-home-link:hover { background: #193c50; border-color: #83d3ff; }
+.blog-panel .blog-note { margin-top: 16px; font-size: 12px; }
+.blog-list { margin: 12px 0 0; padding: 0 12px 0 28px; max-height: 280px; overflow-y: auto; scrollbar-color: #335b70 transparent; scrollbar-width: thin; }
+.blog-item { padding: 15px 0 15px 6px; border-bottom: 1px solid #9ec5e326; }
+.blog-item::marker { color: #74a6c0; font-family: Consolas, monospace; }
+.blog-title { color: #d5e8f5; font-size: 15px; overflow-wrap: anywhere; }
+.blog-title:hover { color: #87d6ff; text-decoration: underline; }
+.blog-views { display: block; margin-top: 6px; color: #8fa6b8; font-size: 12px; }
+.blog-panel .blog-empty { margin-top: 20px; }

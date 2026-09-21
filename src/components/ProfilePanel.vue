@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { articles, blogHome } from '../data/blog.js';
+// 复制后排序，保留数据文件原本的顺序。
+const sortedArticles = computed(() => [...articles].sort((a, b) => (b.views ?? -1) - (a.views ?? -1)));
 
 // 修改这里的内容即可替换个人资料，不需要改动页面布局。
 const profile = {
@@ -10,7 +13,8 @@ const profile = {
 const activeTab = ref('about');
 const tabs = [
   { id: 'about', label: '关于我' },
-  { id: 'work', label: '我的作品' }
+  { id: 'work', label: '我的作品' },
+  { id: 'blog', label: '我的博客' }
 ];
 function moveTab(event, index) {
   let next;
@@ -49,6 +53,23 @@ function moveTab(event, index) {
       </div>
       <div v-show="activeTab === 'work'" id="panel-work" class="tab-panel" role="tabpanel" aria-labelledby="tab-work" tabindex="0">
         <article class="project-entry"><div class="project-topline"><span class="detail-number">01 / WEB</span><span class="project-status">制作中</span></div><h2>交互地球个人主页</h2><p>从页面布局开始，逐步实现地球旋转、缩放与昼夜效果。</p></article>
+      </div>
+      <!-- 博客选项卡：主页入口固定在文章列表前面。 -->
+      <div v-show="activeTab === 'blog'" id="panel-blog" class="tab-panel blog-panel"
+        role="tabpanel" aria-labelledby="tab-blog" tabindex="0">
+        <a class="blog-home-link" :href="blogHome" target="_blank" rel="noopener noreferrer">
+          进入 CSDN 主页 <span aria-hidden="true">↗</span>
+        </a>
+        <template v-if="sortedArticles.length">
+          <p class="blog-note">按已记录阅读量排序 · 非实时数据，未获取的置后</p>
+          <ol class="blog-list">
+            <li v-for="article in sortedArticles" :key="article.id" class="blog-item">
+              <a class="blog-title" :href="article.url" target="_blank" rel="noopener noreferrer">{{ article.title }}</a>
+              <span class="blog-views">阅读量 {{ article.views === null ? '待更新' : article.views.toLocaleString('zh-CN') }}</span>
+            </li>
+          </ol>
+        </template>
+        <p v-else class="blog-empty">文章列表整理中，欢迎先前往 CSDN 主页阅读。</p>
       </div>
     </div>
   </section>
