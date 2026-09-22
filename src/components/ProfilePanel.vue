@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { articles, blogHome } from '../data/blog.js';
+import { milestones, visualWorks, contactEmail } from '../data/portfolio.js';
 // 复制后排序，保留数据文件原本的顺序。
 const sortedArticles = computed(() => [...articles].sort((a, b) => (b.views ?? -1) - (a.views ?? -1)));
 
@@ -14,7 +15,10 @@ const activeTab = ref('about');
 const tabs = [
   { id: 'about', label: '关于我' },
   { id: 'work', label: '我的作品' },
-  { id: 'blog', label: '我的博客' }
+  { id: 'blog', label: '我的博客' },
+  { id: 'journey', label: '学习足迹' },
+  { id: 'gallery', label: '地图与图表' },
+  { id: 'contact', label: '联系我' }
 ];
 function moveTab(event, index) {
   let next;
@@ -70,6 +74,40 @@ function moveTab(event, index) {
           </ol>
         </template>
         <p v-else class="blog-empty">文章列表整理中，欢迎先前往 CSDN 主页阅读。</p>
+      </div>
+      <div v-show="activeTab === 'journey'" id="panel-journey" class="tab-panel feature-panel"
+        role="tabpanel" aria-labelledby="tab-journey" tabindex="0">
+        <p class="section-caption">从空间分析出发，记录每一次实践。</p>
+        <ol class="learning-timeline">
+          <li v-for="(step, index) in milestones" :key="step.title">
+            <span class="milestone-index">{{ String(index + 1).padStart(2, '0') }}</span>
+            <div><span class="milestone-tag">{{ step.tag }}</span><h2>{{ step.title }}</h2><p>{{ step.detail }}</p></div>
+          </li>
+        </ol>
+      </div>
+      <div v-show="activeTab === 'gallery'" id="panel-gallery" class="tab-panel feature-panel"
+        role="tabpanel" aria-labelledby="tab-gallery" tabindex="0">
+        <p class="section-caption">用地图表达空间，用图表理解研究。</p>
+        <div v-if="visualWorks.length" class="visual-gallery">
+          <article v-for="work in visualWorks" :key="work.id" class="visual-card">
+            <img v-if="work.image" :src="work.image" :alt="work.title" loading="lazy">
+            <span class="milestone-tag">{{ work.kind }}</span>
+            <h2>{{ work.title }}</h2><p>{{ work.description }}</p>
+            <a v-if="work.url" class="work-link" :href="work.url" target="_blank" rel="noopener noreferrer">查看作品 ↗</a>
+          </article>
+        </div>
+        <div v-else class="gallery-placeholders">
+          <article class="visual-card"><span class="milestone-tag">MAP / 01 · 待添加</span><h2>我的地图</h2><p>这里将收录专题地图、空间分析成果与交互地图。</p></article>
+          <article class="visual-card"><span class="milestone-tag">FIGURE / 02 · 待添加</span><h2>Python 图表实践</h2><p>这里将记录论文图表复刻、数据可视化与绘图心得。</p></article>
+        </div>
+      </div>
+      <div v-show="activeTab === 'contact'" id="panel-contact" class="tab-panel feature-panel"
+        role="tabpanel" aria-labelledby="tab-contact" tabindex="0">
+        <span class="milestone-tag">LET’S CONNECT</span>
+        <h2 class="contact-heading">交流想法，一起学习</h2>
+        <p>欢迎交流 WebGIS、地图制作和 Python 可视化，也欢迎对我的作品提出建议。</p>
+        <a class="contact-email" :href="'mailto:' + contactEmail">{{ contactEmail }} <span aria-hidden="true">↗</span></a>
+        <p class="contact-note">点击邮箱可通过邮件应用联系我，也可以复制地址发送邮件。</p>
       </div>
     </div>
   </section>
