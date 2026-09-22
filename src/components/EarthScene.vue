@@ -43,7 +43,7 @@ onBeforeUnmount(() => { generation++; dispose?.(); });
       </div>
     </div>
     <button v-if="status === 'ready'" class="earth-reset" @click="resetView">恢复视角</button>
-    <div class="stage-footer"><a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-map/" target="_blank" rel="noopener noreferrer">影像：NASA ↗</a><a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener noreferrer" title="云层与材质：Solar System Scope，CC BY 4.0，经 Three.js 合并处理">云层：Solar System Scope ↗</a><span>左键拖拽旋转 · 滚轮缩放</span></div>
+    <div class="stage-footer"><a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-map/" target="_blank" rel="noopener noreferrer">影像：NASA ↗</a><a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener noreferrer" title="云层与材质：Solar System Scope，CC BY 4.0，经 Three.js 合并处理">云层：Solar System Scope ↗</a><span class="earth-hint"><span class="desktop-hint">左键拖拽旋转 · 滚轮缩放</span><span class="touch-hint">单指旋转 · 双指缩放 · 在地球外滑动页面</span></span></div>
   </section>
 </template>
 
